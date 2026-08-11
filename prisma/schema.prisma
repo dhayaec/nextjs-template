@@ -1,5 +1,8 @@
 // Placeholder schema — replace with your data model. Runs `pnpm prisma validate`
-// in CI, which only needs a resolvable DATABASE_URL, never a live database.
+// in CI, which only validates the schema, never a live database. Prisma 7 keeps
+// connection URLs out of the schema: the Migrate URL lives in prisma.config.ts
+// (datasource.url), and PrismaClient must be constructed with a driver `adapter`
+// (or `accelerateUrl` for Accelerate) — see https://pris.ly/d/config-datasource.
 
 generator client {
   provider = "prisma-client-js"
@@ -7,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
