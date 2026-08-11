@@ -1,0 +1,19 @@
+// Placeholder schema — replace with your data model. Runs `pnpm prisma validate`
+// in CI, which only needs a resolvable DATABASE_URL, never a live database.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
