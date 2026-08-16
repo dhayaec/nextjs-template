@@ -33,9 +33,8 @@ pnpm dev         # development server
 
 1. **Editor (on save)** — VS Code runs Prettier + ESLint fix-on-save
    (`.vscode/settings.json`).
-2. **Pre-commit** — Husky runs `lint-staged`: Prettier + ESLint `--fix` on
-   staged files only. Type-check is deliberately left to pre-push/CI (per-file
-   `tsc` is slow and not project-scoped).
+2. **Pre-commit** — Husky runs `lint-staged`: **Prettier only** on staged files.
+   ESLint runs in CI and pre-push — it's too slow for the commit path.
 3. **Commit message** — Husky's `commit-msg` hook runs commitlint
    (`.commitlintrc.js`).
 4. **Pre-push** — Husky's `pre-push` hook runs `pnpm type-check`.

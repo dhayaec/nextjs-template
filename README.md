@@ -45,10 +45,11 @@ pnpm build          # production build
 pnpm test:e2e       # Playwright (build first)
 ```
 
-Commits must follow `type(scope): subject` (enforced by commitlint). See
-`CLAUDE.md` and `.claude/guidelines/` for the full rules: git workflow, code
-conventions, and toolchain reference. `branch-protection-rules.md` has the
-recommended GitHub branch protection matching the `quality` CI check.
+CI runs `quality` (lint → type-check → test) and `build` in parallel, then `e2e`
+against the uploaded build artifact, then a `gate` job that depends on all
+three. Set branch protection on the `gate` status check to require all jobs to
+pass. See `branch-protection-rules.md` for the recommended GitHub branch
+protection.
 
 ## Use as a template
 
